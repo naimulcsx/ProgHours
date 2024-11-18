@@ -1,4 +1,6 @@
-import type { LinksFunction, MetaFunction } from '@remix-run/node';
+// Import styles of packages that you've installed.
+// All packages except `@mantine/hooks` require styles imports
+import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import {
   Links,
   Meta,
@@ -7,24 +9,8 @@ import {
   ScrollRestoration,
 } from '@remix-run/react';
 
-export const meta: MetaFunction = () => [
-  {
-    title: 'New Remix App',
-  },
-];
-
-export const links: LinksFunction = () => [
-  { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-  {
-    rel: 'preconnect',
-    href: 'https://fonts.gstatic.com',
-    crossOrigin: 'anonymous',
-  },
-  {
-    rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap',
-  },
-];
+import './styles/style.css';
+import { shadcnCssVariableResolver, shadcnTheme } from './styles/theme';
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -34,9 +20,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        <ColorSchemeScript />
       </head>
       <body>
-        {children}
+        <MantineProvider
+          theme={shadcnTheme}
+          cssVariablesResolver={shadcnCssVariableResolver}
+        >
+          {children}
+        </MantineProvider>
         <ScrollRestoration />
         <Scripts />
       </body>

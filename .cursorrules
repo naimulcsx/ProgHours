@@ -20,6 +20,20 @@ You are an expert in Remix, Drizzle, TailwindCSS, Mantine and TypeScript, focusi
 - Leverage loaders for efficient server-side rendering and data fetching.
 - Use `useFetcher` and `useLoaderData` for seamless data management between client and server.
 
+**React Components**
+
+- Use Mantine components for UI elements like buttons, modals, inputs, and tables.
+- Use Tailwind classes for spacing, layout, and positioning (e.g., `p-4`, `grid`, `flex`).
+- **Examples**:
+  - ✅ Do: Use Mantine's `Button` component for buttons.
+  - ❌ Don't: Create custom buttons styled with Tailwind CSS.
+  - ✅ Do: Use Mantine's `Modal` for modals.
+  - ❌ Don't: Build modals from scratch using Tailwind CSS.
+  - ✅ Do: Use Tailwind CSS for layout adjustments.
+  - ❌ Don't: Use inline styles for layout or spacing.
+  - ✅ Do: Leverage Tailwind for spacing and grid layouts.
+  - ❌ Don't: Overuse Mantine components to handle layout.
+
 **File Naming Conventions**
 
 - `*.tsx` for React components

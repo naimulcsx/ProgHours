@@ -35,16 +35,10 @@ testem.log
 /typings
 
 # System Files
-.nx
 .DS_Store
 Thumbs.db
 
-# Metrics
-/grafana-data
-/prometheus
+.nx/cache
+.nx/workspace-data
 
-# env
-.env.local
-
-# app info
-appinfo.json
+vite.config.*.timestamp*

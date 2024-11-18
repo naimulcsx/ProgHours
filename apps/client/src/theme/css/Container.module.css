@@ -1,5 +1,0 @@
-.root {
-  &[data-variant="proghours-ui"] {
-    --container-size-xl: 1280px;
-  }
-}

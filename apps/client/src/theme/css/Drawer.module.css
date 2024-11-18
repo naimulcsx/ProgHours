@@ -1,8 +1,0 @@
-.content {
-  background: hsl(var(--background)) !important;
-  border-right: 1px solid hsl(var(--border));
-}
-
-.header {
-  background: hsl(var(--background)) !important;
-}

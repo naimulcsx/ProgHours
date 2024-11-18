@@ -13,12 +13,8 @@
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "strictPropertyInitialization": false,
     "baseUrl": ".",
-    "paths": {
-      "@proghours/crawler": ["libs/crawler/src/index.ts"],
-      "@proghours/data-access": ["libs/data-access/src/index.ts"]
-    }
+    "paths": {}
   },
   "exclude": ["node_modules", "tmp"]
 }

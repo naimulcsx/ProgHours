@@ -1,8 +1,0 @@
-.tab {
-  --tabs-color: hsl(var(--primary));
-  --_tab-hover-color: hsl(var(--secondary));
-}
-
-.list {
-  --_tab-border-color: hsl(var(--secondary));
-}

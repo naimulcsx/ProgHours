@@ -1,7 +1,0 @@
-.root {
-  &[data-variant="proghours-ui"] {
-    .pill {
-      background: hsl(var(--secondary));
-    }
-  }
-}

@@ -1,98 +1,96 @@
-![progHours](./docs/assets/cover.png?)
+# ProgHours
 
-> _Update: We're excited to announce that the public beta is just around the corner! 🎉 We've completely rebuilt progHours from the ground up._
+<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
-# progHours
+✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
 
-**_A gamification-driven platform for competitive programmers._**
+[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/intro#learn-nx?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
 
-![GitHub Repo stars](https://img.shields.io/github/stars/naimulcsx/proghours?style=social)
-![GitHub issues](https://img.shields.io/github/issues/naimulcsx/progHours)
+## Run tasks
 
-## What is progHours?
+To run tasks with Nx use:
 
-progHours is an effort to combine problem-solving and gamification techniques to create a platform tailored for competitive programmers. This platform offers valuable analytics to foster user engagement and encourages them to compete with one another. It also helps coaches by offering valuable insights through comprehensive analytics to monitor and assess student progress.
-
-## Motivation and Goals
-
-This project is experimental and we are working to define and refine our goals. However, we have settled on the following common goals for the project:
-
-- To provide comprehensive analytics on your problem-solving journey.
-- To use gamification techniques, such as leaderboard, points and rewards, to engage students in competitive programming and compete with others.
-- To provide coaches with valuable insights through comprehensive analytics to monitor and assess student progress.
-- To foster a sense of community and shared accomplishment among students.
-- To provide users with the opportunity to showcase their problem-solving skills to the recruiters.
-
-## Online Judge Support
-
-Currently, we provide support for 14 Online Judges. Users can only track problems from supported online judges. We've created this library called `@proghours/crawler`, which is responsible for collecting problem and submissions data data from supported Online Judges. To learn more about it please explore the details [here](https://github.com/naimulcsx/progHours/tree/development/libs/crawler).
-
-## Tech Stack
-
-- Nx, TypeScript, React, Mantine, TanStack Query, Playwright
-- NestJS, PostgreSQL, Prisma, Redis, BullMQ, Bull Board, Jest
-- Docker, Docker Compose, Pino, Prometheus, Grafana, Loki
-
-## Local development
-
-### Prerequisites
-
-- NodeJS
-- Docker
-
-### Steps
-
-#### Step 1: Clone the Repository
-
-Begin by cloning this repository to your machine.
-
-```
-git clone git@github.com:naimulcsx/progHours.git
+```sh
+npx nx <target> <project-name>
 ```
 
-#### Step 2: Install the dependencies
+For example:
 
-Install the dependencies.
-
-```bash
-npm install
+```sh
+npx nx build myproject
 ```
 
-#### Step 3: Run necessary components
+These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
 
-Navigate to the `progHours` directory and run the components using docker-compose.
+[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
-```bash
-cd progHours
-docker-compose -f docker-compose.yml up -d
+## Add new projects
+
+While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
+
+To install a new plugin you can use the `nx add` command. Here's an example of adding the React plugin:
+```sh
+npx nx add @nx/react
 ```
 
-#### Step 4: Run database migrations
+Use the plugin's generator to create new projects. For example, to create a new React app or library:
 
-If you are setting up for the first time, you need to run database migrations
+```sh
+# Generate an app
+npx nx g @nx/react:app demo
 
-```bash
-npm run db:migrate
+# Generate a library
+npx nx g @nx/react:lib some-lib
 ```
 
-#### Step 5: Launch the project
+You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
 
-Launch the project by running the following command.
+[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
-```bash
-npm run dev
+## Set up CI!
+
+### Step 1
+
+To connect to Nx Cloud, run the following command:
+
+```sh
+npx nx connect
 ```
 
-### Running E2E Tests
+Connecting to Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
 
-You can execute the end-to-end (E2E) tests using Playwright by running the following command in your terminal. The tests will run in a headless browser environment, and the test results will be displayed in the console.
+- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
-```bash
-nx run client:e2e
+### Step 2
+
+Use the following command to configure a CI workflow for your workspace:
+
+```sh
+npx nx g ci-workflow
 ```
 
-If you want to explore, run and debug tests with a time travel experience, you can use the Playwright's UI mode. o open UI mode, run the following command in your terminal:
+[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
-```bash
-nx run client:e2e --ui
-```
+## Install Nx Console
+
+Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+
+[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+
+## Useful links
+
+Learn more:
+
+- [Learn more about this workspace setup](https://nx.dev/getting-started/intro#learn-nx?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
+- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+
+And join the Nx community:
+- [Discord](https://go.nx.dev/community)
+- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
+- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
+- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)

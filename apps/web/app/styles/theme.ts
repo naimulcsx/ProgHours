@@ -1,5 +1,7 @@
 import {
   Anchor,
+  AppShell,
+  AppShellHeader,
   Button,
   Card,
   Checkbox,
@@ -9,6 +11,7 @@ import {
   HoverCard,
   Input,
   Modal,
+  NavLink,
   Paper,
   Popover,
   Select,
@@ -648,6 +651,21 @@ export const shadcnTheme = createTheme({
       defaultProps: {
         checkIconPosition: 'right',
       },
+    }),
+    AppShell: AppShell.extend({
+      styles: {
+        navbar: {
+          borderColor: 'var(--mantine-color-default-border)',
+        },
+        header: {
+          borderColor: 'var(--mantine-color-default-border)',
+        },
+      },
+    }),
+    NavLink: NavLink.extend({
+      classNames: () => ({
+        root: 'globalMantineNavLink',
+      }),
     }),
     // Title: used static class (.mantine-Title-root) to style the title
     // DatePicker: used static classes to style the date picker

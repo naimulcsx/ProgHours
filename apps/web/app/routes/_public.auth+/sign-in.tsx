@@ -40,7 +40,7 @@ export const meta: MetaFunction = () => {
 export async function action({ request }: ActionFunctionArgs) {
   try {
     return await authenticator.authenticate('local', request, {
-      successRedirect: '/dashboard',
+      successRedirect: '/app',
       throwOnError: true,
     });
   } catch (error) {
@@ -64,7 +64,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const message = session.get('message') as string | undefined;
 
   if (user) {
-    return redirect('/dashboard');
+    return redirect('/app');
   }
 
   return json(

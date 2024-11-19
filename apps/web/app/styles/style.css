@@ -58,6 +58,15 @@
   border-radius: var(--mantine-radius-default);
 }
 
+.globalMantineNavLink {
+  font-weight: 500;
+  &[data-active='true'] {
+    background: var(--mantine-color-primary-light);
+    border-radius: var(--mantine-radius-default);
+    color: var(--mantine-color-primary-filled);
+  }
+}
+
 /* Date Picker */
 .mantine-DatePicker-levelsGroup {
   .mantine-DatePicker-calendarHeader {

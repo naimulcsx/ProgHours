@@ -1,6 +1,5 @@
 import { Anchor, Button, Container, Group } from '@mantine/core';
-import { Outlet } from '@remix-run/react';
-import { Link } from '@remix-run/react';
+import { Link, Outlet } from '@remix-run/react';
 
 import { AppLogo } from '~/assets/AppLogo';
 
@@ -14,7 +13,7 @@ export default function PublicLayout() {
               <Link to="/">
                 <AppLogo className="text-primary h-8 w-8" />
               </Link>
-              <ul className="flex gap-4">
+              <ul className="hidden gap-4 sm:flex">
                 <li>
                   <Anchor size="sm" component={Link} to="/" underline="never">
                     Home
@@ -55,7 +54,9 @@ export default function PublicLayout() {
           </div>
         </Container>
       </header>
-      <Outlet />
+      <main className="p-md">
+        <Outlet />
+      </main>
     </div>
   );
 }

@@ -8,7 +8,8 @@
     "**/.server/**/*.ts",
     "**/.server/**/*.tsx",
     "**/.client/**/*.ts",
-    "**/.client/**/*.tsx"
+    "**/.client/**/*.tsx",
+    "app/routes/_public.auth.sign-up"
   ],
   "exclude": [
     "tests/**/*.spec.ts",

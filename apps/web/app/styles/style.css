@@ -7,7 +7,6 @@
 @import '@mantine/core/styles.layer.css';
 
 .globalMantineInput {
-  background: red !important;
   &:focus-within {
     outline: rem(1px) solid var(--mantine-primary-color-filled);
   }
@@ -199,4 +198,10 @@
 /* Title */
 .mantine-Title-root {
   letter-spacing: -0.025em;
+}
+
+/* Nprogress */
+#nprogress .bar {
+  background: var(--mantine-color-primary-4) !important;
+  height: 4px !important;
 }

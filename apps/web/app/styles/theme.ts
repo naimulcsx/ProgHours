@@ -202,6 +202,20 @@ const amberColors = [
   '#F59E0B',
 ] as const;
 
+const mirageColors = [
+  '#f3f4fa',
+  '#e8ecf7',
+  '#d6dbef',
+  '#bdc3e4',
+  '#a2a6d7',
+  '#8a8aca',
+  '#7771ba',
+  '#6660a2',
+  '#544f84',
+  '#47456a',
+  '#191825',
+] as const;
+
 export const shadcnCssVariableResolver: CSSVariablesResolver = (theme) => ({
   variables: {
     // variables that do not depend on color scheme
@@ -303,7 +317,7 @@ export const shadcnTheme = createTheme({
     yellow: yellowColors,
     violet: violetColors,
 
-    primary: zincColors,
+    primary: mirageColors,
     secondary: zincColors, // secondary will be dynamically changed baesd on the primary color
     dark: zincColors, // dark will always be secondary color
 
@@ -317,6 +331,7 @@ export const shadcnTheme = createTheme({
   primaryShade: { light: 8, dark: 0 },
   autoContrast: true,
   luminanceThreshold: 0.3,
+  fontFamily: 'Poppins',
   radius: {
     xs: rem('6px'),
     sm: rem('8px'),
@@ -355,7 +370,7 @@ export const shadcnTheme = createTheme({
   },
 
   headings: {
-    fontFamily: 'Geist',
+    fontFamily: 'Play',
     sizes: {
       h1: {
         fontSize: rem('36px'),
@@ -472,6 +487,11 @@ export const shadcnTheme = createTheme({
         shadow: 'xl',
         radius: 'md',
         withBorder: true,
+        styles: () => ({
+          root: {
+            borderColor: 'var(--mantine-color-default-border)',
+          },
+        }),
       },
     }),
     Popover: Popover.extend({
@@ -607,10 +627,16 @@ export const shadcnTheme = createTheme({
 
         return {};
       },
+      styles: () => ({
+        root: {
+          fontFamily: 'Play',
+        },
+      }),
     }),
     Anchor: Anchor.extend({
       defaultProps: {
         underline: 'always',
+        fw: 500,
       },
     }),
     HoverCard: HoverCard.extend({

@@ -1,7 +1,7 @@
 import { createRemixStub } from '@remix-run/testing';
 import { render, screen, waitFor } from '@testing-library/react';
 
-import Index from '../../app/routes/_index';
+import Index from '../../app/routes/_public+/_index';
 
 test('renders loader data', async () => {
   const RemixStub = createRemixStub([

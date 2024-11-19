@@ -12,9 +12,8 @@ module.exports = {
         'mantine-breakpoint-xl': '88em',
       },
     },
-    tailwindcss: {
-      config: join(__dirname, 'tailwind.config.ts'),
-    },
     autoprefixer: {},
+    'tailwindcss/nesting': {},
+    tailwindcss: {},
   },
 };

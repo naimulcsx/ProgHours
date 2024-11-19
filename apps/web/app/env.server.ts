@@ -6,6 +6,11 @@ const environmentSchema = z.object({
     .enum(['development', 'production', 'test'])
     .default('development'),
   DATABASE_URL: z.string().min(1),
+  SESSION_SECRET: z.string().min(1),
+  INVITE_CODES: z
+    .string()
+    .min(1)
+    .transform((value) => value.split(',')),
 });
 
 const getEnv = () => environmentSchema.parse(process.env);

@@ -11,7 +11,7 @@ export const users = pgTable('users', {
   country: varchar('country', { length: 3 }), // ISO 3166-1 alpha-2 / alpha-3
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
-  metaData: json('metadata').default({}),
+  metadata: json('metadata').default({}),
 });
 
 export const databaseSchema = {

@@ -24,6 +24,7 @@
     "tests/**/*.spec.js",
     "tests/**/*.test.js",
     "tests/**/*.spec.jsx",
-    "tests/**/*.test.jsx"
+    "tests/**/*.test.jsx",
+    "app/routes/_public.auth.sign-up"
   ]
 }

@@ -8,6 +8,13 @@
       "when": 1731911799751,
       "tag": "0000_add-users-table",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1732039936716,
+      "tag": "0001_add-other-tables",
+      "breakpoints": true
     }
   ]
 }

@@ -30,12 +30,12 @@ jobs:
       - uses: a7ul/tar-action@v1.1.0
         with:
           command: c
-          cwd: './'
+          cwd: './dist/apps/web'
           files: |
-            dist/apps/web/
+            .
           outPath: deploy.tar
 
-      - name: Deploy App to CapRover
+      - name: Deploy App
         uses: caprover/deploy-from-github@v1.0.1
         with:
           server: '${{ secrets.CAPROVER_SERVER }}'

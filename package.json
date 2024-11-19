@@ -1,8 +1,10 @@
 {
-  "name": "@prog-hours/source",
+  "name": "@proghours/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build": "tsx scripts/build-captain.ts"
+  },
   "private": true,
   "devDependencies": {
     "@eslint/js": "^9.8.0",
@@ -26,6 +28,7 @@
     "@testing-library/user-event": "^14.5.2",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/bcryptjs": "^2.4.6",
+    "@types/fs-extra": "^11.0.4",
     "@types/nprogress": "^0.2.3",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
@@ -33,10 +36,12 @@
     "@vitest/coverage-v8": "^1.0.4",
     "@vitest/ui": "^1.3.1",
     "autoprefixer": "^10.4.20",
+    "chalk": "^5.3.0",
     "drizzle-kit": "^0.28.1",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-playwright": "^1.6.2",
+    "fs-extra": "^11.2.0",
     "jsdom": "~22.1.0",
     "nx": "20.1.2",
     "postcss": "^8.4.49",
@@ -47,6 +52,7 @@
     "remix-flat-routes": "^0.6.5",
     "tailwindcss": "^3.4.15",
     "tslib": "^2.3.0",
+    "tsx": "^4.19.2",
     "typescript": "~5.5.2",
     "typescript-eslint": "^8.0.0",
     "vite": "^5.0.0",

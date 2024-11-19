@@ -1,0 +1,43 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches: ['233-migrate-to-remix']
+
+  pull_request:
+    branches: ['233-migrate-to-remix']
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
+      - run: npx nx build web
+      - run: npm run build --if-present
+
+      - uses: a7ul/tar-action@v1.1.0
+        with:
+          command: c
+          cwd: './'
+          files: |
+            dist/apps/web/
+          outPath: deploy.tar
+
+      - name: Deploy App to CapRover
+        uses: caprover/deploy-from-github@v1.0.1
+        with:
+          server: '${{ secrets.CAPROVER_SERVER }}'
+          app: '${{ secrets.APP_NAME }}'
+          token: '${{ secrets.APP_TOKEN }}'

@@ -1,3 +1,10 @@
+import { AppBreadcrumbs } from '~/components/app-breadcrumbs';
+import { PageHeader } from '~/components/page-header';
+
 export default function Dashboard() {
-  return <div>Overview</div>;
+  return (
+    <PageHeader title="Overview" description={<AppBreadcrumbs />}>
+      Overview
+    </PageHeader>
+  );
 }

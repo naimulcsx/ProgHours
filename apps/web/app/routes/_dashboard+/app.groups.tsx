@@ -1,3 +1,10 @@
+import { AppBreadcrumbs } from '~/components/app-breadcrumbs';
+import { PageHeader } from '~/components/page-header';
+
 export default function Groups() {
-  return <div>Groups</div>;
+  return (
+    <PageHeader title="Groups" description={<AppBreadcrumbs />}>
+      Groups
+    </PageHeader>
+  );
 }

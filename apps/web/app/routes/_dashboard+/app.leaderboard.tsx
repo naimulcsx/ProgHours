@@ -1,3 +1,10 @@
+import { AppBreadcrumbs } from '~/components/app-breadcrumbs';
+import { PageHeader } from '~/components/page-header';
+
 export default function Leaderboard() {
-  return <div>Leaderboard</div>;
+  return (
+    <PageHeader title="Leaderboard" description={<AppBreadcrumbs />}>
+      Leaderboard
+    </PageHeader>
+  );
 }

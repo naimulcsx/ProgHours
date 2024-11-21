@@ -64,7 +64,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const message = session.get('message') as string | undefined;
 
   if (user) {
-    return redirect('/app');
+    throw redirect('/app');
   }
 
   return json(

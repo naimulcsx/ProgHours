@@ -5,6 +5,7 @@ import {
   Text,
   Title,
 } from '@mantine/core';
+import { ModalsProvider } from '@mantine/modals';
 import {
   Link,
   Links,
@@ -61,7 +62,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           theme={shadcnTheme}
           cssVariablesResolver={shadcnCssVariableResolver}
         >
-          {children}
+          <ModalsProvider>{children}</ModalsProvider>
         </MantineProvider>
         <ScrollRestoration />
         <Scripts />

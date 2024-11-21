@@ -110,7 +110,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   session.flash('message', 'Sign up successful! You can now sign in.');
 
-  return redirect('/auth/sign-in', {
+  throw redirect('/auth/sign-in', {
     headers: {
       'Set-Cookie': await commitSession(session),
     },

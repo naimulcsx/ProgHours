@@ -1,7 +1,7 @@
 import { Anchor, Button, Container, Group } from '@mantine/core';
 import { Link, Outlet } from '@remix-run/react';
 
-import { AppLogo } from '~/assets/AppLogo';
+import { AppLogo } from '~/assets/app-logo';
 
 export default function PublicLayout() {
   return (

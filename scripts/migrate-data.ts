@@ -6,6 +6,7 @@
  *
  * Author: Naimul Haque
  */
+import dayjs from 'dayjs';
 import { config } from 'dotenv';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import { join } from 'path';
@@ -107,7 +108,15 @@ async function migrateProblems(
     const batch = oldProblems.slice(i, i + BATCH_SIZE);
     const newProblems = await db
       .insert(problems)
-      .values(batch.map(({ id, ...rest }) => rest))
+      .values(
+        batch.map(({ id, ...rest }) => {
+          return {
+            ...rest,
+            createdAt: rest.created_at,
+            updatedAt: rest.updated_at,
+          };
+        }),
+      )
       .returning({ id: problems.id });
     newProblems.forEach((newProblem: { id: string }, index: number) => {
       problemIdMap[batch[index].id] = newProblem.id;
@@ -208,9 +217,27 @@ async function migrateSubmissions(
   for (let i = 0; i < oldSubmissions.length; i += BATCH_SIZE) {
     const batch = oldSubmissions.slice(i, i + BATCH_SIZE);
     const submissionValues = batch.map(({ id, ...sub }) => ({
-      ...sub,
+      solveTime: sub.solve_time,
+      verdict: sub.verdict,
+      solvedAt: sub.solved_at
+        ? dayjs(sub.solved_at).format('YYYY-MM-DD')
+        : null,
       userId: userIdMap[sub.user_id],
       problemId: problemIdMap[sub.problem_id],
+      isVerified: sub.is_verified,
+      acCount: sub.ac_count,
+      psCount: sub.ps_count,
+      waCount: sub.wa_count,
+      tleCount: sub.tle_count,
+      mleCount: sub.mle_count,
+      reCount: sub.re_count,
+      ceCount: sub.ce_count,
+      skCount: sub.sk_count,
+      hckCount: sub.hck_count,
+      othCount: sub.oth_count,
+      metadata: sub.metadata,
+      createdAt: new Date(sub.created_at),
+      updatedAt: new Date(sub.updated_at),
     }));
     await db.insert(submissions).values(submissionValues);
     console.log(

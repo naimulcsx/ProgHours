@@ -35,16 +35,16 @@ import {
   UserGroupIcon,
 } from 'hugeicons-react';
 
-import { AppLogo } from '~/assets/AppLogo';
+import { AppLogo } from '~/assets/app-logo';
 import { authenticator } from '~/services/auth.server';
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   if (new URL(request.url).pathname === '/app') {
-    return redirect('/app/overview');
+    throw redirect('/app/overview');
   }
   const user = await authenticator.isAuthenticated(request);
   if (!user) {
-    return redirect('/auth/sign-in');
+    throw redirect('/auth/sign-in');
   }
   return {
     user,
@@ -220,7 +220,7 @@ export default function Demo() {
         </AppShellSection>
       </AppShell.Navbar>
 
-      <AppShell.Main>
+      <AppShell.Main mih="calc(100dvh - 100px)">
         <Outlet />
       </AppShell.Main>
     </AppShell>

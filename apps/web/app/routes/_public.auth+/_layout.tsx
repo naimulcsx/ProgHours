@@ -3,7 +3,7 @@ import { Outlet, redirect } from '@remix-run/react';
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   if (new URL(request.url).pathname === '/auth') {
-    return redirect('/auth/sign-in');
+    throw redirect('/auth/sign-in');
   }
   return null;
 };

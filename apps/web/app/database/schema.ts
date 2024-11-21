@@ -111,7 +111,17 @@ export const submissions = pgTable('submissions', {
   skCount: integer('sk_count').default(0),
   hckCount: integer('hck_count').default(0),
   othCount: integer('oth_count').default(0),
-  metadata: json('metadata').default({}),
+  metadata: json('metadata')
+    .$type<{
+      submissions?: {
+        id: number;
+        pid: string;
+        url: string;
+        createdAt: string;
+        verdict: (typeof verdictEnum.enumValues)[number];
+      }[];
+    }>()
+    .default({}),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
@@ -124,11 +134,12 @@ export const submissionsRelations = relations(submissions, ({ one }) => ({
   }),
 }));
 
-export const databaseSchema = {
+export const schema = {
   users,
   problems,
   tags,
   problemTags,
+  submissions,
   usersRelations,
   problemRelations,
   tagsRelations,

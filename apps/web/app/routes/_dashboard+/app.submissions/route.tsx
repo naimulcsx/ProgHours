@@ -1,5 +1,5 @@
 import { Button, Group, Pagination } from '@mantine/core';
-import { LoaderFunctionArgs, redirect } from '@remix-run/node';
+import { LoaderFunctionArgs, MetaFunction, redirect } from '@remix-run/node';
 import { useLoaderData, useNavigate } from '@remix-run/react';
 import { desc, eq, sql } from 'drizzle-orm';
 import { ArrowLeft02Icon, ArrowRight02Icon } from 'hugeicons-react';
@@ -11,6 +11,14 @@ import { submissions } from '~/database/schema';
 import { authenticator } from '~/services/auth.server';
 
 import { SubmissionsTimeline } from './_components/submissions-timeline';
+
+export const meta: MetaFunction = () => {
+  return [
+    {
+      title: 'Submissions',
+    },
+  ];
+};
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const user = await authenticator.isAuthenticated(request);

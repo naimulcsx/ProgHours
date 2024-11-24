@@ -1,7 +1,6 @@
 import {
   Anchor,
   AppShell,
-  AppShellHeader,
   Button,
   Card,
   Checkbox,

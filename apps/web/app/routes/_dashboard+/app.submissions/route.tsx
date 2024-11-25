@@ -1,4 +1,4 @@
-import { Button, Group, Pagination } from '@mantine/core';
+import { Button, Group, Notification, Pagination } from '@mantine/core';
 import { LoaderFunctionArgs, MetaFunction, redirect } from '@remix-run/node';
 import { useLoaderData, useNavigate } from '@remix-run/react';
 import { desc, eq, sql } from 'drizzle-orm';
@@ -10,6 +10,7 @@ import { db } from '~/database';
 import { submissions } from '~/database/schema';
 import { authenticator } from '~/services/auth.server';
 
+import { EmptyState } from './_components/empty-state';
 import { SubmissionsTimeline } from './_components/submissions-timeline';
 
 export const meta: MetaFunction = () => {
@@ -32,6 +33,17 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     })
     .from(submissions)
     .where(eq(submissions.userId, user!.sub));
+
+  // Handle case when user has no submissions
+  if (!dates || dates.length === 0) {
+    return {
+      isDummyData: true,
+      submissions: [],
+      totalDates: 0,
+      currentDateIndex: -1,
+      dates: [],
+    };
+  }
 
   // If no date provided, redirect to most recent date
   if (!dateParam) {
@@ -76,6 +88,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   });
 
   return {
+    isDummyData: false,
     submissions: data,
     totalDates: dates.length,
     currentDateIndex,
@@ -85,7 +98,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 export default function Submissions() {
   const navigate = useNavigate();
-  const { totalDates, currentDateIndex, dates } =
+  const { isDummyData, currentDateIndex, dates } =
     useLoaderData<typeof loader>();
 
   const handleDateChange = (direction: 'prev' | 'next') => {
@@ -98,30 +111,34 @@ export default function Submissions() {
 
   return (
     <div className="space-y-4">
-      <PageHeader title="My Submissions" description={<AppBreadcrumbs />}>
-        Submissions
-      </PageHeader>
-
-      <SubmissionsTimeline />
-
-      <Group justify="start" mt="lg" ml={60}>
-        <Button
-          variant="outline"
-          disabled={currentDateIndex === dates.length - 1}
-          onClick={() => handleDateChange('prev')}
-          leftSection={<ArrowLeft02Icon />}
-        >
-          Previous Day
-        </Button>
-        <Button
-          variant="outline"
-          disabled={currentDateIndex === 0}
-          onClick={() => handleDateChange('next')}
-          rightSection={<ArrowRight02Icon />}
-        >
-          Next Day
-        </Button>
-      </Group>
+      {isDummyData ? (
+        <EmptyState />
+      ) : (
+        <>
+          <PageHeader title="My Submissions" description={<AppBreadcrumbs />}>
+            Submissions
+          </PageHeader>
+          <SubmissionsTimeline />
+          <Group justify="start" mt="lg" ml={60}>
+            <Button
+              variant="outline"
+              disabled={currentDateIndex === dates.length - 1}
+              onClick={() => handleDateChange('prev')}
+              leftSection={<ArrowLeft02Icon />}
+            >
+              Previous Day
+            </Button>
+            <Button
+              variant="outline"
+              disabled={currentDateIndex === 0}
+              onClick={() => handleDateChange('next')}
+              rightSection={<ArrowRight02Icon />}
+            >
+              Next Day
+            </Button>
+          </Group>
+        </>
+      )}
     </div>
   );
 }

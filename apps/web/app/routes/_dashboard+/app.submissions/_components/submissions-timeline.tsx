@@ -111,7 +111,9 @@ export function SubmissionsTimeline() {
                 >
                   {daySubmissions
                     .sort(
-                      (a, b) => a.createdAt.getTime() - b.createdAt.getTime(),
+                      (a, b) =>
+                        new Date(a.createdAt).getTime() -
+                        new Date(b.createdAt).getTime(),
                     )
                     .map((submission) => {
                       return (

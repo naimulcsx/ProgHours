@@ -173,7 +173,7 @@ export default function Demo() {
                 to={to}
                 label={label}
                 leftSection={icon}
-                active={location.pathname === to}
+                active={location.pathname.startsWith(to)}
                 color={color}
               />
             ))}
